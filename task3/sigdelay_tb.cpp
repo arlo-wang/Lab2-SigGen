@@ -10,7 +10,7 @@
 int main(int argc, char **argv, char **env) {
   int simcyc;     // simulation clock count
   int tick;       // each clk cycle has two ticks for two edges
-
+  
   Verilated::commandArgs(argc, argv);
   // init top verilog instance
   Vsigdelay* top = new Vsigdelay;
@@ -28,8 +28,8 @@ int main(int argc, char **argv, char **env) {
   // initialize simulation input 
   top->clk = 1;
   top->rst = 0;
-  top->wr = 1;
-  top->rd = 1;
+  top->wr_en = 1;
+  top->rd_en = 1;
   top->offset = 64;
   
   // intialize variables for analogue output
@@ -43,6 +43,7 @@ int main(int argc, char **argv, char **env) {
       top->clk = !top->clk;
       top->eval ();
     }
+
     top->mic_signal = vbdMicValue();
     top->offset = abs(vbdValue());     // adjust delay by changing incr
 
