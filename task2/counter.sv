@@ -3,12 +3,12 @@ module counter #(
 ) (
     input  logic             clk,    // clock
     input  logic             rst,    // reset
+    input  logic             en,
     input  logic [WIDTH-1:0] incr,   // 8-bit increment input
+    input  logic [WIDTH-1:0] vbdValue,
 
-    output logic [WIDTH-1:0] addr
+    output logic [WIDTH-1:0] count
 );
-    
-    logic [WIDTH-1:0]
 
 always_ff @ (posedge clk) begin
     if (rst)
